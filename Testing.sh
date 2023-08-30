@@ -144,6 +144,7 @@ FIO_size=$FIO_offset_increment
 FIO_blocksize=1M FIO_queuedepth=4 FIO_readwrite=read FIO_percentage_random=0 FIO_numjobs=4
 test-title Testing read seqential ...
 FIO_output=$(fio-run)
+echo "$FIO_output"
 echo "$FIO_output" | fio-parse
 READ_SEQ=`echo "$FIO_output" | fio-getfield 3`
 
@@ -151,6 +152,7 @@ READ_SEQ=`echo "$FIO_output" | fio-getfield 3`
 FIO_blocksize=1M FIO_queuedepth=4 FIO_readwrite=write FIO_percentage_random=0 FIO_numjobs=4
 test-title Testing write seqential ...
 FIO_output=$(fio-run)
+echo "$FIO_output"
 echo "$FIO_output" | fio-parse
 WRITE_SEQ=`echo "$FIO_output" | fio-getfield 6`
 
