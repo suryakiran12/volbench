@@ -140,6 +140,8 @@ FIO_sizenumber=`echo $FIO_size | sed 's/[a-z]//ig'`
 FIO_offset_increment=`expr $FIO_sizenumber / 4`$FIO_unit
 FIO_size=$FIO_offset_increment
 
+function parameters {
+
 echo "bs=${FIO_blocksize}k"
 echo "ioengine=libaio"
 echo "iodepth=$FIO_queuedepth"
@@ -156,8 +158,11 @@ echo "time_based"
 echo "ramp_time=$FIO_ramptime"
 echo "runtime=$FIO_runtime"
 
+}
+
 # test read sequental throughput
 FIO_blocksize=1M FIO_queuedepth=4 FIO_readwrite=read FIO_percentage_random=0 FIO_numjobs=4
+parameters
 test-title Testing read seqential ...
 FIO_output=$(fio-run)
 echo "$FIO_output"
